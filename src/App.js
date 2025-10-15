@@ -1,6 +1,6 @@
 // src/App.jsx
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
 
 // Pages
@@ -44,7 +44,7 @@ import MedicalDevices from "./pages/industries/MedicalDevices";
 
 export default function App() {
   return (
-    <Router>
+    <BrowserRouter basename="/MechNest">
       <Layout>
         <Routes>
           {/* Home */}
@@ -95,6 +95,6 @@ export default function App() {
           <Route path="/industries/medical-devices" element={<MedicalDevices />} />
         </Routes>
       </Layout>
-    </Router>
+    </BrowserRouter>
   );
 }
