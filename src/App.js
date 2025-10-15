@@ -31,10 +31,8 @@ import CAETraining from "./pages/training/CAETraining";
 import PlacementAssistance from "./pages/training/PlacementAssistance";
 import CertificationPrep from "./pages/training/CertificationPrep";
 
-// Industries Overview
+// Industries
 import Industries from "./pages/industries/Industries";
-
-// Individual Industry Pages
 import Automotive from "./pages/industries/Automotive";
 import Aerospace from "./pages/industries/Aerospace";
 import ConsumerProducts from "./pages/industries/ConsumerProducts";
@@ -43,8 +41,11 @@ import EnergyPower from "./pages/industries/EnergyPower";
 import MedicalDevices from "./pages/industries/MedicalDevices";
 
 export default function App() {
+  // Automatically detect basename for GitHub Pages
+  const basename = process.env.PUBLIC_URL;
+
   return (
-    <BrowserRouter basename="/MechNest">
+    <BrowserRouter basename={basename}>
       <Layout>
         <Routes>
           {/* Home */}
@@ -61,14 +62,8 @@ export default function App() {
 
           {/* Services */}
           <Route path="/services/design-modeling" element={<DesignModeling />} />
-          <Route
-            path="/services/engineering-analysis"
-            element={<EngineeringAnalysis />}
-          />
-          <Route
-            path="/services/industrial-project"
-            element={<IndustrialProject />}
-          />
+          <Route path="/services/engineering-analysis" element={<EngineeringAnalysis />} />
+          <Route path="/services/industrial-project" element={<IndustrialProject />} />
           <Route path="/services/consulting" element={<Consulting />} />
 
           {/* Software */}
@@ -83,16 +78,17 @@ export default function App() {
           <Route path="/training/placement" element={<PlacementAssistance />} />
           <Route path="/training/certification" element={<CertificationPrep />} />
 
-          {/* Industries Overview */}
+          {/* Industries */}
           <Route path="/industries" element={<Industries />} />
-
-          {/* Individual Industry Pages */}
           <Route path="/industries/automotive" element={<Automotive />} />
           <Route path="/industries/aerospace" element={<Aerospace />} />
           <Route path="/industries/consumer-products" element={<ConsumerProducts />} />
           <Route path="/industries/industrial-machinery" element={<IndustrialMachinery />} />
           <Route path="/industries/energy-power" element={<EnergyPower />} />
           <Route path="/industries/medical-devices" element={<MedicalDevices />} />
+
+          {/* Fallback for unknown paths */}
+          <Route path="*" element={<Home />} />
         </Routes>
       </Layout>
     </BrowserRouter>

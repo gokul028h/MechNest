@@ -49,7 +49,8 @@ const Navbar = React.forwardRef(function Navbar(_, ref) {
         
         <Link
           to="/"
-          className="text-2xl font-bold text-blue-700 tracking-wide hover:text-blue-800 transition"
+          className="text-2xl font-bold text-blue-700 tracking-wide hover:text-blue-800 transition no-underline hover:no-underline"
+          style={{ textDecoration: 'none' }}
         >
           🔧 MechNest<span className="text-gray-800"> Solutions</span>
         </Link>
@@ -121,7 +122,8 @@ const Navbar = React.forwardRef(function Navbar(_, ref) {
 
           <Link
             to="/contact"
-            className="ml-2 px-5 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 text-white font-medium shadow hover:shadow-lg hover:from-blue-700 hover:to-blue-800 transition"
+            className="ml-2 px-5 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 text-white font-medium shadow hover:shadow-lg hover:from-blue-700 hover:to-blue-800 transition no-underline hover:no-underline"
+            style={{ textDecoration: 'none' }}
           >
             Contact
           </Link>
@@ -184,7 +186,8 @@ const Navbar = React.forwardRef(function Navbar(_, ref) {
           <Link
             to="/contact"
             onClick={() => setMenuOpen(false)}
-            className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-md font-medium shadow hover:shadow-lg transition"
+            className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-md font-medium shadow hover:shadow-lg transition no-underline hover:no-underline"
+            style={{ textDecoration: 'none' }}
           >
             Contact
           </Link>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const services = [
   {
@@ -27,6 +28,7 @@ export default function CoreServices() {
   return (
     <section className="py-16 bg-white text-center px-8">
       <h2 className="text-3xl font-bold text-blue-900 mb-10">Our Services</h2>
+
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
         {services.map((s, i) => (
           <div
@@ -40,12 +42,18 @@ export default function CoreServices() {
           </div>
         ))}
       </div>
+
       <div className="max-w-6xl mx-auto text-center mt-10">
         <p className="text-gray-700 mb-4">
           With a strong foundation in software-driven solutions and project-based
           learning, we bridge academic knowledge with real-world application.
         </p>
-        <a href="/contact" className="inline-block bg-blue-900 text-white px-5 py-3 rounded-lg font-semibold hover:bg-blue-800 transition">Contact Us</a>
+        <Link
+          to="/contact"
+          className="inline-block bg-blue-900 text-white px-5 py-3 rounded-lg font-semibold hover:bg-blue-800 transition"
+        >
+          Contact Us
+        </Link>
       </div>
     </section>
   );
