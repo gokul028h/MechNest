@@ -1,8 +1,8 @@
 {
-  "name": "client",
+  "name": "mechnest-frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://tanmaybaghel.github.io/MechNest",
+  "homepage": "https://mech-nest.vercel.app/",
   "dependencies": {
     "@headlessui/react": "^2.2.9",
     "@heroicons/react": "^2.2.0",
