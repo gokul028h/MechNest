@@ -2,23 +2,11 @@ import React from "react";
 
 const leadershipTeam = [
   {
-    name: "Rohan Verma",
+    name: "Chandran Nagendran",
     title: "Founder & CEO",
     bio: "With over 20 years in mechanical design, Rohan founded MechNest to bridge the gap between theoretical engineering and practical, industry-ready solutions.",
     img: "/mechnest.jpg"
-  },
-  {
-    name: "Anjali Mehta",
-    title: "Chief Technology Officer (CTO)",
-    bio: "Anjali is a pioneer in CAE and simulation technologies. She leads our technical teams, ensuring we leverage the most advanced software to solve complex challenges.",
-    img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop",
-  },
-  {
-    name: "Sameer Khan",
-    title: "Head of Operations",
-    bio: "Sameer's expertise in project management and operational efficiency ensures that every client project is delivered on time, within budget, and to the highest quality standards.",
-    img: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=300&auto=format&fit=crop",
-  },
+  }
 ];
 
 export default function Leadership() {
