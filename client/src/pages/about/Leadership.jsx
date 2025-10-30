@@ -5,7 +5,7 @@ const leadershipTeam = [
     name: "Rohan Verma",
     title: "Founder & CEO",
     bio: "With over 20 years in mechanical design, Rohan founded MechNest to bridge the gap between theoretical engineering and practical, industry-ready solutions.",
-    img: "/src/assets/images/mechnest.jpg"
+    img: "/mechnest.jpg"
   },
   {
     name: "Anjali Mehta",
