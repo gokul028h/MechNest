@@ -6,7 +6,6 @@ const Navbar = React.forwardRef(function Navbar(_, ref) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
 
-  // Dropdown items
   const dropdownItems = {
     about: [
       { name: "Our Story", path: "/about/our-story" },
@@ -43,14 +42,16 @@ const Navbar = React.forwardRef(function Navbar(_, ref) {
   };
 
   return (
-    <header ref={ref} className="bg-white/90 backdrop-blur-md shadow-md fixed w-full top-0 z-50 transition-all duration-300">
+    <header
+      ref={ref}
+      className="bg-white/90 backdrop-blur-md shadow-md fixed w-full top-0 z-50 transition-all duration-300"
+    >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        
         <Link
           to="/"
           className="text-2xl font-bold text-blue-700 tracking-wide hover:text-blue-800 transition no-underline hover:no-underline"
-          style={{ textDecoration: 'none' }}
+          style={{ textDecoration: "none" }}
         >
           🔧 MechNest<span className="text-gray-800"> Solutions</span>
         </Link>
@@ -59,7 +60,6 @@ const Navbar = React.forwardRef(function Navbar(_, ref) {
         <nav className="hidden md:flex gap-8 items-center">
           {Object.keys(dropdownItems).map((key) => {
             const items = dropdownItems[key];
-            // If only one child (like resources), render a direct link
             if (items.length === 1) {
               const item = items[0];
               return (
@@ -78,7 +78,9 @@ const Navbar = React.forwardRef(function Navbar(_, ref) {
                 key={key}
                 className="relative"
                 onMouseEnter={() => setOpenDropdown(key)}
-                onMouseLeave={() => setOpenDropdown((prev) => (prev === key ? null : prev))}
+                onMouseLeave={() =>
+                  setOpenDropdown((prev) => (prev === key ? null : prev))
+                }
               >
                 <button
                   className="flex items-center gap-1 text-gray-700 font-medium hover:text-blue-700 transition"
@@ -89,7 +91,11 @@ const Navbar = React.forwardRef(function Navbar(_, ref) {
                 >
                   {key.charAt(0).toUpperCase() + key.slice(1)}
                   {items.length > 1 && (
-                    <ChevronDownIcon className={`w-4 h-4 transition-transform ${openDropdown === key ? "rotate-180" : ""}`} />
+                    <ChevronDownIcon
+                      className={`w-4 h-4 transition-transform ${
+                        openDropdown === key ? "rotate-180" : ""
+                      }`}
+                    />
                   )}
                 </button>
 
@@ -98,7 +104,9 @@ const Navbar = React.forwardRef(function Navbar(_, ref) {
                   <div
                     id={`dropdown-${key}`}
                     className={`absolute left-0 mt-2 w-56 bg-white border rounded-lg shadow-lg pointer-events-auto transition-all duration-200 z-50 ${
-                      openDropdown === key ? "opacity-100 visible scale-100" : "opacity-0 invisible scale-95"
+                      openDropdown === key
+                        ? "opacity-100 visible scale-100"
+                        : "opacity-0 invisible scale-95"
                     }`}
                     onFocus={() => setOpenDropdown(key)}
                   >
@@ -118,14 +126,15 @@ const Navbar = React.forwardRef(function Navbar(_, ref) {
             );
           })}
 
-          {/* Contact */}
-
+          {/* Enroll Now Button */}
           <Link
             to="/contact"
-            className="ml-2 px-5 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 text-white font-medium shadow hover:shadow-lg hover:from-blue-700 hover:to-blue-800 transition no-underline hover:no-underline"
-            style={{ textDecoration: 'none' }}
+            className="ml-2 px-6 py-2.5 rounded-lg font-semibold text-white shadow-md transition-all duration-300
+              bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 
+              hover:scale-105 hover:shadow-lg animate-pulse-slow hover:animate-none"
+            style={{ textDecoration: "none" }}
           >
-            Contact
+          Enroll Now
           </Link>
         </nav>
 
@@ -183,13 +192,16 @@ const Navbar = React.forwardRef(function Navbar(_, ref) {
             </div>
           ))}
 
+          {/* Mobile Enroll Button */}
           <Link
             to="/contact"
             onClick={() => setMenuOpen(false)}
-            className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-md font-medium shadow hover:shadow-lg transition no-underline hover:no-underline"
-            style={{ textDecoration: 'none' }}
+            className="px-4 py-2 rounded-md font-semibold text-white shadow-md transition-all duration-300
+              bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500
+              hover:scale-105 hover:shadow-lg animate-pulse-slow hover:animate-none text-center"
+            style={{ textDecoration: "none" }}
           >
-            Contact
+          Enroll Now
           </Link>
         </div>
       </div>
