@@ -4,8 +4,21 @@ import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
-    <section className="w-full bg-gradient-to-r from-blue-900 to-indigo-700 text-white py-20 text-center flex flex-col items-center justify-center px-6">
-      
+    <section
+      className="relative w-full bg-gradient-to-r from-blue-900 to-indigo-700 text-white 
+      pt-32 md:pt-28 pb-20 text-center flex flex-col items-center justify-center px-6"
+    >
+      {/* Mobile Enroll Now button - visible only on small screens */}
+      <div className="absolute top-4 right-4 md:hidden">
+        <Link
+          to="/contact"
+          className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white 
+          font-semibold px-4 py-2 rounded-lg shadow-lg text-sm animate-pulse-slow"
+        >
+          🎓 Enroll Now
+        </Link>
+      </div>
+
       <motion.h1
         className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4"
         initial={{ opacity: 0, y: -20 }}
@@ -14,7 +27,7 @@ export default function Hero() {
       >
         Design. Analyze. Learn. Succeed with MechNest Solutions.
       </motion.h1>
-      
+
       <motion.p
         className="max-w-3xl text-lg text-gray-200 mb-8"
         initial={{ opacity: 0, y: 20 }}
@@ -24,7 +37,7 @@ export default function Hero() {
         Empowering industries and professionals with cutting-edge design,
         simulation, and training solutions in mechanical engineering.
       </motion.p>
-      
+
       <motion.div whileHover={{ scale: 1.05 }}>
         <Link
           to="/contact"
@@ -33,7 +46,6 @@ export default function Hero() {
           Get Started
         </Link>
       </motion.div>
-
     </section>
   );
 }
