@@ -4,11 +4,7 @@ const leadershipTeam = [
   {
     name: "Chandran Nagendran",
     title: "Founder & CEO",
-    bio: "Chandran is a seasoned Mechanical Engineer with over 20 years of expertise in design, simulation and vibration analysis. As the Founder of MechNest Solutions, he leads projects that transform innovative mechanical concepts into industry-ready engineering solutions.
-
-With advanced proficiency in tools such as ANSYS, Hypermesh, Abaqus, CATIA, SolidWorks and Creo, Chandran brings a strong combination of technical accuracy and practical insight to every project. His work spans 3D modeling, finite element analysis (FEA) and dynamic system studies, consistently delivering results marked by precision, reliability and professional excellence.
-
-At the core of his approach lies a commitment to quality, innovation and complete client satisfaction — making MechNest Solutions a trusted partner in mechanical design and analysis.",
+    bio: "Chandran is a seasoned Mechanical Engineer with over 20 years of expertise in design, simulation and vibration analysis. As the Founder of MechNest Solutions, he leads projects that transform innovative mechanical concepts into industry-ready engineering solutions.With advanced proficiency in tools such as ANSYS, Hypermesh, Abaqus, CATIA, SolidWorks and Creo, Chandran brings a strong combination of technical accuracy and practical insight to every project. His work spans 3D modeling, finite element analysis (FEA) and dynamic system studies, consistently delivering results marked by precision, reliability and professional excellence.At the core of his approach lies a commitment to quality, innovation and complete client satisfaction — making MechNest Solutions a trusted partner in mechanical design and analysis.",
     img: "/mechnest.jpg"
   }
 ];
