@@ -18,7 +18,7 @@ export default function Demo() {
   e.preventDefault();
 
   try {
-    const response = await fetch("https://mechnest-8n23bi1xq-gokuls-projects-135df70d.vercel.app/api/demo", {
+    const response = await fetch("https://mechnest.onrender.com/api/demo", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
