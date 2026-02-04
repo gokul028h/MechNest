@@ -10,59 +10,50 @@ export default function Demo() {
     message: "",
   });
 
-  const [loading, setLoading] = useState(false);
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (loading) return;
+   const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    setLoading(true);
+  try {
+    const response = await fetch("https://mechnest.onrender.com/api/demo", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
 
-    try {
-      const response = await fetch("https://mechnest.onrender.com/api/demo", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to submit demo request");
-      }
-
-      alert(data.message);
-
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        date: "",
-        message: "",
-      });
-    } catch (error) {
-      console.error("Error:", error);
-      alert(error.message || "Failed to submit demo request.");
-    } finally {
-      setLoading(false);
+    const data = await response.json();
+    
+    if (!response.ok) {
+      throw new Error(data.error || "Failed to submit demo request");
     }
-  };
+
+    console.log("Success:", data);
+    alert(data.message);
+
+    // Reset form
+    setFormData({ 
+      name: "", 
+      email: "", 
+      phone: "", 
+      date: "", 
+      message: "" 
+    });
+
+  } catch (error) {
+    console.error("Error:", error);
+    alert(error.message || "Failed to submit demo request.");
+  }
+};
 
   return (
     <section className="px-6 py-16 bg-gray-50">
       <div className="max-w-4xl mx-auto text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4 text-blue-900">
-          Book a Free Demo
-        </h1>
+        <h1 className="text-4xl font-bold mb-4 text-blue-900">Book a Free Demo</h1>
         <p className="text-gray-700 text-lg">
-          Schedule a 30-minute session with our expert engineers. Share your
-          idea, receive insights, and get a preliminary quote tailored for
-          your project.
+          Schedule a 30-minute session with our expert engineers. Share your idea, receive insights, and get a preliminary quote tailored for your project.
         </p>
       </div>
 
@@ -114,27 +105,16 @@ export default function Demo() {
 
           <button
             type="submit"
-            disabled={loading}
-            className={`bg-blue-900 text-white py-3 rounded-lg font-semibold shadow transition
-              ${loading ? "opacity-60 cursor-not-allowed" : "hover:bg-blue-800"}`}
+            className="bg-blue-900 text-white py-3 rounded-lg font-semibold shadow hover:bg-blue-800 transition"
           >
-            {loading ? "Submitting..." : "Submit Request"}
+            Submit Request
           </button>
         </form>
       </CardBox>
 
-      {/* 🔽 This section is kept EXACTLY as before */}
       <div className="max-w-4xl mx-auto mt-10 text-gray-700 text-center">
         <p>Prefer direct contact? Reach us at:</p>
-        <p className="mt-2">
-          📩{" "}
-          <a
-            href="mailto:Chandru.mechnestsolutions@gmail.com"
-            className="text-blue-900 underline"
-          >
-            Chandru.mechnestsolutions@gmail.com
-          </a>
-        </p>
+        <p className="mt-2">📩 <a href="mailto:Chandru.mechnestsolutions@gmail.com" className="text-blue-900 underline">Chandru.mechnestsolutions@gmail.com</a></p>
         <p className="mt-1">📞 +91 - 9751006142</p>
       </div>
     </section>

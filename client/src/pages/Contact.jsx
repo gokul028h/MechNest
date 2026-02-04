@@ -9,38 +9,33 @@ export default function Contact() {
     message: "",
   });
 
-  const [loading, setLoading] = useState(false);
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (loading) return;
+  e.preventDefault();
 
-    setLoading(true);
+  try {
+    const response = await fetch("https://mechnest.onrender.com/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
 
-    try {
-      const response = await fetch("https://mechnest.onrender.com/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+    const data = await response.json();
+    console.log(data);
+    alert("Message sent successfully!");
 
-      const data = await response.json();
-      console.log(data);
-      alert("Message sent successfully!");
+    // Reset form after submission
+    setFormData({ name: "", email: "", phone: "", message: "" });
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Failed to send message.");
+  }
+};
 
-      // Reset form after submission
-      setFormData({ name: "", email: "", phone: "", message: "" });
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Failed to send message.");
-    } finally {
-      setLoading(false);
-    }
-  };
+
 
   return (
     <section className="px-6 py-16 bg-gray-50">
@@ -91,28 +86,16 @@ export default function Contact() {
             rows={5}
             required
           ></textarea>
-
           <button
             type="submit"
-            disabled={loading}
-            className={`bg-blue-900 text-white py-3 rounded-lg font-semibold transition
-              ${loading ? "opacity-60 cursor-not-allowed" : "hover:bg-blue-800"}`}
+            className="bg-blue-900 text-white py-3 rounded-lg font-semibold hover:bg-blue-800 transition"
           >
-            {loading ? "Sending..." : "Send Message"}
+            Send Message
           </button>
         </form>
 
-        {/* 🔽 This section is kept EXACTLY as before */}
         <div className="mt-8 text-gray-700">
-          <p>
-            📩 Email:{" "}
-            <a
-              href="mailto:Chandru.mechnestsolutions@gmail.com"
-              className="text-blue-900 underline"
-            >
-              Chandru.mechnestsolutions@gmail.com
-            </a>
-          </p>
+          <p>📩 Email: <a href="mailto:Chandru.mechnestsolutions@gmail.com" className="text-blue-900 underline">Chandru.mechnestsolutions@gmail.com</a></p>
           <p>📞 Phone: +91 - 9751006142</p>
           <p>
             📍 Location: No. 1/101, Mariyamman Koil street, Sethuvandai,
