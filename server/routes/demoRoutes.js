@@ -27,6 +27,20 @@ router.post("/", async (req, res) => {
 
     // Save to database
     await demoRequest.save();
+    try {
+  await sendMail({
+    subject: "🚀 New Demo Request",
+    text: `
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Date: ${date}
+Message: ${message}
+    `
+  });
+} catch (err) {
+  console.error("Email failed:", err.message);
+}
 
     res.status(201).json({
       success: true,
