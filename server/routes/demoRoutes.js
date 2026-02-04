@@ -1,5 +1,6 @@
 import express from "express";
 import Demo from "../models/Demo.js";
+import { sendMail } from "../utils/mailer.js";
 
 const router = express.Router();
 
@@ -28,6 +29,25 @@ router.post("/", async (req, res) => {
     // Save to database
     await demoRequest.save();
 
+    // Try sending email (non-blocking for DB)
+    try {
+      await sendMail({
+        subject: "🚀 New Demo Request",
+        text: `
+New Demo Request Received:
+
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Date: ${date}
+Message: ${message}
+        `
+      });
+    } catch (mailError) {
+      console.error("⚠️ Email failed (demo):", mailError.message);
+      // We DO NOT return error to client here
+    }
+
     res.status(201).json({
       success: true,
       message: "Demo request submitted successfully!",
@@ -35,7 +55,7 @@ router.post("/", async (req, res) => {
     });
 
   } catch (error) {
-    console.error("Error saving demo request:", error);
+    console.error("❌ Error saving demo request:", error);
     res.status(500).json({
       success: false,
       error: "Internal server error",
@@ -53,10 +73,11 @@ router.get("/", async (req, res) => {
       data: demoRequests
     });
   } catch (error) {
-    console.error("Error fetching demo requests:", error);
+    console.error("❌ Error fetching demo requests:", error);
     res.status(500).json({
       success: false,
-      error: "Failed to fetch demo requests"
+      error: "Failed to fetch demo requests",
+      message: error.message
     });
   }
 });
