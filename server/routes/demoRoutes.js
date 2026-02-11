@@ -1,14 +1,13 @@
 import express from "express";
 import Demo from "../models/Demo.js";
+import { sendMail } from "../utils/mailer.js";
 
 const router = express.Router();
 
-// POST /api/demo - Create new demo request
 router.post("/", async (req, res) => {
   try {
     const { name, email, phone, date, message } = req.body;
 
-    // Validation
     if (!name || !email || !phone || !date || !message) {
       return res.status(400).json({ 
         success: false, 
@@ -16,7 +15,6 @@ router.post("/", async (req, res) => {
       });
     }
 
-    // Create new demo request
     const demoRequest = new Demo({
       name,
       email,
@@ -25,22 +23,22 @@ router.post("/", async (req, res) => {
       message
     });
 
-    // Save to database
     await demoRequest.save();
+
     try {
-  await sendMail({
-    subject: "🚀 New Demo Request",
-    text: `
+      await sendMail({
+        subject: "🚀 New Demo Request",
+        text: `
 Name: ${name}
 Email: ${email}
 Phone: ${phone}
 Date: ${date}
 Message: ${message}
-    `
-  });
-} catch (err) {
-  console.error("Email failed:", err.message);
-}
+        `
+      });
+    } catch (err) {
+      console.error("Email failed:", err.message);
+    }
 
     res.status(201).json({
       success: true,
@@ -54,23 +52,6 @@ Message: ${message}
       success: false,
       error: "Internal server error",
       message: error.message
-    });
-  }
-});
-
-// GET /api/demo - Get all demo requests (optional, for admin)
-router.get("/", async (req, res) => {
-  try {
-    const demoRequests = await Demo.find().sort({ createdAt: -1 });
-    res.json({
-      success: true,
-      data: demoRequests
-    });
-  } catch (error) {
-    console.error("Error fetching demo requests:", error);
-    res.status(500).json({
-      success: false,
-      error: "Failed to fetch demo requests"
     });
   }
 });
