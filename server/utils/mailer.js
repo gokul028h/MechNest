@@ -6,7 +6,7 @@ export const sendMail = async ({ subject, text }) => {
   try {
     await resend.emails.send({
       from: "MechNest <noreply@mechnestsolutions.com>",
-      to: ["gokulleo1030@gmail.com"],
+      to: ["chandru.mechnestsolutions@gmail.com"],
       subject,
       text,
     });
